@@ -35,8 +35,12 @@ void CommandParser::addChar(char c) {
     buffer[index++] = c;
 }
 
-void CommandParser::processFromStream(Stream& stream) {
-    while (stream.available()) addChar(stream.read());
+void CommandParser::processFromStream(Stream& stream, bool echo) {
+    while (stream.available()) {
+        char c = stream.read();
+        addChar(c);
+        if (echo) stream.write(c);
+    }
 }
 
 void CommandParser::onCommand(const String& command, CommandHandler handler, CaseSensivity cs) {

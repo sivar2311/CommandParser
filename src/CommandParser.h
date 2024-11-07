@@ -23,7 +23,7 @@ class CommandParser {
     ~CommandParser();
 
     void addChar(char c);
-    void processFromStream(Stream& stream);
+    void processFromStream(Stream& stream, bool echo = false);
 
     void onCommand(const String& command, CommandHandler handler, CaseSensivity cs = CaseSensivity::EQUALS);
     void onNotFound(CommandHandler handler);
